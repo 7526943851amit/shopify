@@ -1,0 +1,58 @@
+Dekhiye, aapne kuch Shopify app permissions ya access rights di hain jo ek application ko di ja sakti hain. Har permission ek specific task ya capability ko define karta hai jise app perform kar sakta hai. Yeh permissions Shopify store ke data ko secure rakhte hain aur unauthorized access se bachate hain.
+
+Aapke diye gaye permissions mein kuch common categories hain:
+
+    Analytics:
+        read_analytics: Store metrics dekhne ki permission.
+        write_discovery aur read_discovery: Discovery API ko manage aur access karne ki permission.
+
+    Fulfillment Orders:
+        write_assigned_fulfillment_orders aur read_assigned_fulfillment_orders: Fulfillment orders ko view aur manage karne ki permission.
+
+    Browsing Behavior:
+        read_customer_events: Online store browsing behavior, jaise ki page views, cart updates, product views, aur searches ko dekhne ki permission.
+
+    Customers:
+        write_customers aur read_customers: Customers, customer addresses, order history, aur customer groups ko manage aur view karne ki permission.
+
+    Discounts:
+        write_discounts aur read_discounts: Automatic discounts aur discount codes ko manage aur view karne ki permission.
+
+    Draft Orders:
+        write_draft_orders aur read_draft_orders: Draft orders ko manage aur view karne ki permission.
+
+    Files:
+        write_files aur read_files: Files ko manage aur view karne ki permission.
+
+    Inventory:
+        write_inventory aur read_inventory: Inventory across multiple locations ko manage aur view karne ki permission.
+
+    Locations:
+        write_locations aur read_locations: Geographic location of stores, headquarters, aur warehouses ko manage aur view karne ki permission.
+
+    Marketing Events:
+        write_marketing_events aur read_marketing_events: Marketing events aur engagement data ko manage aur view karne ki permission.
+
+    Orders:
+        write_orders aur read_orders: Orders, transactions, fulfillments, aur abandoned checkouts ko manage aur view karne ki permission.
+
+    Pixels:
+        write_pixels aur read_pixels: Pixels ko manage aur view karne ki permission.
+
+    Products:
+        write_products aur read_products: Products, variants, aur collections ko manage aur view karne ki permission.
+
+    Returns:
+        write_returns aur read_returns: Returns ko manage aur view karne ki permission.
+
+    Sales Channels:
+        write_channels aur read_channels: Sales channels ko manage aur view karne ki permission.
+
+    Shipping:
+        write_shipping aur read_shipping: Shipping carriers, countries, aur provinces ko manage aur view karne ki permission.
+
+    Store Content:
+        write_content aur read_content: Articles, blogs, comments, pages, aur redirects ko manage aur view karne ki permission.
+
+    Themes:
+        write_themes aur read_themes: Theme templates aur assets ko manage aur view karne ki permission.
