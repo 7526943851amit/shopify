@@ -5,6 +5,11 @@
     <h5>{{ product.featured_image | image_url: width:400 | img_tag }}</h5>
 {% endfor %}
 
+{% section 'mysection' %}
+{% assign customproducts = all_products['hh'] %}
+{{ customproducts.title }}
+  
+{{ customproducts.metafields.custom.mycustomfield }}
 
 
 {% schema %}
