@@ -1,3 +1,40 @@
+disocunt api
+title:
+
+Ye field aapke discount rule ka title ya naam hai. Aap apne rule ko koi bhi naam de sakte hain, jisse aap use identify kar sakein.
+value_type:
+
+Ye field ye batata hai ki aapka discount percentage ya fixed amount ka hoga. Ismein "percentage" diya gaya hai, iska matlab hai ki aapka discount percentage basis par hoga.
+value:
+
+Ye field actual discount value ko represent karta hai. Yahan "-100.0" diya gaya hai, iska matlab hai ki 100% discount diya jaega, yaani ki pura amount off hoga.
+customer_selection:
+
+Ye field batata hai ki kon-konse customers ko ye discount milega. Yahan "all" diya gaya hai, iska matlab hai ki sabhi customers ko ye discount milega.
+target_type:
+
+Ye field ye batata hai ki discount kis type ke item par apply hoga. Yahan "line_item" diya gaya hai, iska matlab hai ki discount har ek line item par apply hoga.
+target_selection:
+
+Ye field batata hai ki kaun se items par discount apply hoga. Yahan "entitled" diya gaya hai, iska matlab hai ki discount un items par apply hoga jo specifically mention kiye gaye hain.
+allocation_method:
+
+Ye field batata hai ki discount ka allocation kaise hoga, yaani ki kaise distribute hoga. Yahan "each" diya gaya hai, iska matlab hai ki har item par individually discount apply hoga.
+starts_at:
+
+Ye field batata hai ki discount kab se shuru hoga. Yahan "2018-03-22T00:00:00-00:00" diya gaya hai, iska matlab hai ki discount 22nd March 2018 se shuru hoga.
+prerequisite_collection_ids:
+
+Ye field batata hai ki discount ke liye kya prerequisites hain. Yahan ek collection ID di gayi hai, jo ki discount ke liye shart hai.
+entitled_product_ids:
+
+Ye field batata hai ki kaun se products discount ke liye eligible hain. Yahan ek product ID di gayi hai.
+prerequisite_to_entitlement_quantity_ratio:
+Ye field batata hai ki kitni quantity ka prerequisite hona chahiye taki entitlement (discount) mile. Yahan "prerequisite_quantity" 2 aur "entitled_quantity" 1 diya gaya hai, iska matlab hai ki har 2 products ke liye 1 discount milega.
+allocation_limit:
+Ye field batata hai ki ek user maximum kitne items par discount le sakta hai. Yahan "3" diya gaya hai, iska matlab hai ki ek user maximum 3 items par discount le sakta hai.
+Ye saare key-value pairs ek discount rule ko define karte hain. Jab aap apne application mein is rule ko apply karenge, to iske hisab se discounts calculate honge.
+//postman run start
 {
   "price_rule": {
     "title": "My Product Discount",
