@@ -1,0 +1,5 @@
+var targetSection1 = document.getElementById("section-header2");
+        window.scrollTo({
+      top: targetSection1.getBoundingClientRect().top + window.scrollY - 250,
+    behavior: 'smooth'
+});
