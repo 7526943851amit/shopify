@@ -1,4 +1,7 @@
-
+<link
+        rel="stylesheet"
+        href="{{ 'amit.css' | asset_url }}"
+      > //css link shopify
 {% for product in collections['all'].products %}
     <h1>{{ product.title }}</h1>
     <h5>{{ product.description }}</h5>
