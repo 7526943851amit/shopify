@@ -1,0 +1,15 @@
+{% paginate collections.all.products by 10 %}
+  {% for product in collections.all.products %}
+    <h1>{{ product.title }}</h1>
+    <h5>{{ product.description }}</h5>
+    <h5>{{ product.featured_image | img_url: 400 | img_tag }}</h5>
+  {% endfor %}
+
+  {% for part in paginate.parts %}
+    {% if part.is_link %}
+      {{ part.title | link_to: part.url }}
+    {% else %}
+      <span>{{ part.title }}</span>
+    {% endif %}
+  {% endfor %}
+{% endpaginate %}
