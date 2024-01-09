@@ -1,0 +1,144 @@
+
+{% comment %}
+{% for product in collections.all.products  %}
+    <h1>{{ product.title }}</h1>
+    <h5>{{ product.description }}</h5>
+    <h5>{{ product.featured_image | image_url: width:400 | img_tag }}</h5>
+{% endfor %}
+{% endcomment %}
+
+<!-- <div class="container">
+  <div class="row"> 
+    <div class="col-sm-4">
+{{ section.settings.sectionImage | img_url: '100x' | img_tag }}
+      <h3>{{ section.settings.heading }}</h3>
+     <p>{{ section.settings.description }}</p>
+    </div>
+    <div class="col-sm-4">
+    {{ section.settings.sectionImage2 | img_url: '100x' | img_tag }}
+ <h3>{{ section.settings.heading2 }}</h3>
+     <p>{{ section.settings.description2 }}</p>
+    </div>
+    <div class="col-sm-4">
+   {{ section.settings.sectionImage3 | img_url: '100x' | img_tag }}
+ <h3>{{ section.settings.heading3 }}</h3>
+     <p>{{ section.settings.description3 }}</p>
+    </div>
+  </div>
+</div> -->
+ {% for block in section.blocks %}  
+        <div class="col-sm-4">
+         
+    {{ block.settings.galleryImage1 | img_url: '100x' | img_tag }}
+   <h3>{{ block.settings.galleryLabel }}</h3>
+        <p>{{ block.settings.galleryDescription }}</p>
+
+        </div>
+      {% endfor %}
+
+
+      
+{% paginate collections.all.products by 10 %}
+  {% for product in collections.all.products %}
+    <h1>{{ product.title }}</h1>
+    <h5>{{ product.description }}</h5>
+    <h5>{{ product.featured_image | img_url: 400 | img_tag }}</h5>
+  {% endfor %}
+
+  {% for part in paginate.parts %}
+    {% if part.is_link %}
+      {{ part.title | link_to: part.url }}
+    {% else %}
+      <span>{{ part.title }}</span>
+    {% endif %}
+  {% endfor %}
+{% endpaginate %}
+
+
+
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "Mysection",
+  "settings": [
+     {
+      "type": "image_picker",
+      "id": "sectionImage",
+      "label": "Select Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Enter Title"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Enter Description"
+    }, {
+      "type": "image_picker",
+      "id": "sectionImage2",
+      "label": "Select Image"
+    },
+    {
+      "type": "text",
+      "id": "heading2",
+      "label": "Enter Title"
+    },
+    {
+      "type": "textarea",
+      "id": "description2",
+      "label": "Enter Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "sectionImage3",
+      "label": "Select Image"
+    },
+    {
+      "type": "text",
+      "id": "heading3",
+      "label": "Enter Title"
+    },
+    {
+      "type": "textarea",
+      "id": "description3",
+      "label": "Enter Description"
+    }
+  ],
+   "blocks": [
+    {
+      "type": "gallery",
+      "name": "Gallery",
+      "settings": [
+        {
+          "type": "text",
+          "id": "galleryLabel",
+          "label": "Gallery Label"
+        },
+        {
+          "type": "textarea",
+          "id": "galleryDescription",
+          "label": "Gallery Description"
+        },
+        {
+          "type": "image_picker",
+          "id": "galleryImage1",
+          "label": "Gallery Image 1"
+        }   
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "amit sharma",
+      "category": "Footer"
+    }
+  ]
+}
+{% endschema %}
