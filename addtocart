@@ -1,0 +1,38 @@
+
+<form method="post" action="/cart/add" id="dynamic-cart-form">
+  <input name="id" value="{{ product.selected_or_first_available_variant.id }}" type="hidden" />
+  <button id="add-to-cart-button">Add to cart</button>
+</form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  let addToCartForm = document.getElementById('dynamic-cart-form');
+  let addToCartButton = document.getElementById('add-to-cart-button');
+
+  addToCartButton.addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent the default button click behavior
+
+ 
+    let formData = new FormData(addToCartForm);
+
+  
+    fetch('/cart/add.js', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+
+        console.log('Response:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  });
+});
+</script>
