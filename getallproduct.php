@@ -36,3 +36,10 @@
   ]
 }
 {% endschema %}
+{{ product.title }}
+
+{{ product.description }}
+   {% for image in product.images %} 
+{{ image.src | product_img_url: 'grande' | img_tag}}
+     {% endfor %}
+  {{ product.price |money_without_trailing_zeros  }}
