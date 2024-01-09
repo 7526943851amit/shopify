@@ -1,3 +1,4 @@
+//quantitiy de dena pehle product mein jaakeye
 
 <form method="post" action="/cart/add" id="dynamic-cart-form">
   <input name="id" value="{{ product.selected_or_first_available_variant.id }}" type="hidden" />
