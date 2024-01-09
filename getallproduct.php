@@ -6,6 +6,9 @@
     <h1>{{ product.title }}</h1>
     <h5>{{ product.description }}</h5>
     <h5>{{ product.featured_image | image_url: width:400 | img_tag }}</h5>
+ {% for image in product.images %} 
+{{ image.src | product_img_url: 'grande' | img_tag}}
+         {% endfor %}
 {% endfor %}
 
 {% for product in collections.all.products  %}
