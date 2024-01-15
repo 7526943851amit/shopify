@@ -2,32 +2,41 @@
 
 <div class='container'>
   <div class='row'>
-  {% for block in section.blocks %}
-    {% assign collectionHandle = block.settings.mycollection %}
-    {% assign collection = collections[collectionHandle] %}
-<div class="col-sm-2">
-    <a href="#" class="collection-link" data-collection-handle="{{ collectionHandle }}">
-      {{ collection.title }}
-    </a>
-</div>
-    <ul class="product-list" data-collection-handle="{{ collectionHandle }}" style="display:none;">
-      {% for product in collection.products %}
-        <li>
-          <h3>{{ product.title }}</h3>
-          <p>{{ product.description }}</p>
-            <h5>{{ product.featured_image | image_url: width:400 | img_tag }}</h5>
-     <form class="spf-product__form buy_now_button" action="/checkout" method="post">
-    <button type="submit" class="spf-product__form-btn-addtocart">
-        Buy Now
-    </button>
-</form>
+    {% for block in section.blocks %}
+      {% assign collectionHandle = block.settings.mycollection %}
+      {% assign collection = collections[collectionHandle] %}
+      <div class="col-sm-2">
+        <a href="#" class="collection-link" data-collection-handle="{{ collectionHandle }}">
+          {{ collection.title }}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
 
-        </li>
+  <div class='row'>
+    <div class="col-sm-12"> 
+      {% for block in section.blocks %}
+        {% assign collectionHandle = block.settings.mycollection %}
+        {% assign collection = collections[collectionHandle] %}
+        <ul class="product-list" data-collection-handle="{{ collectionHandle }}" style="display:none;">
+          {% for product in collection.products %}
+            <li>
+              <h3>{{ product.title }}</h3>
+              <p>{{ product.description }}</p>
+              <h5>{{ product.featured_image | image_url: width:400 | img_tag }}</h5>
+              <form class="spf-product__form buy_now_button" action="/checkout" method="post">
+                <button type="submit" class="spf-product__form-btn-addtocart">
+                  Buy Now
+                </button>
+              </form>
+            </li>
+          {% endfor %}
+        </ul>
       {% endfor %}
-    </ul>
-  {% endfor %}
+    </div>
   </div>
 </div>
+
 
 <script>
   $(document).ready(function () {
