@@ -1,9 +1,15 @@
-//quantitiy de dena pehle product mein jaakeye
+{% for product in collections.all.products %}
+    {{ product.id }}
+    <h1>{{ product.title }}</h1>
+    <h5>{{ product.description }}</h5>
+    <h5>{{ product.featured_image | img_url: 1000 | img_tag }}</h5>
+
 
 <form method="post" action="/cart/add" id="dynamic-cart-form">
   <input name="id" value="{{ product.selected_or_first_available_variant.id }}" type="hidden" />
   <button id="add-to-cart-button">Add to cart</button>
 </form>
+{% endfor %}
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
