@@ -40,21 +40,30 @@
 
 <script>
   $(document).ready(function () {
+   
+    var initialCollectionHandle = 'test';
+
+    showProducts(initialCollectionHandle);
+
+ 
+    function showProducts(collectionHandle) {
+      $('.product-list').hide();
+      $('.product-list[data-collection-handle="' + collectionHandle + '"]').show();
+    }
+
+ 
     $('.collection-link').click(function (e) {
       e.preventDefault();
       var collectionHandle = $(this).data('collection-handle');
 
-    
-      $('.product-list').hide();
-
- 
-      $('.product-list[data-collection-handle="' + collectionHandle + '"]').show(); 
+     
+      showProducts(collectionHandle);
     });
   });
-
-
-  
 </script>
+
+
+
 
 
 
