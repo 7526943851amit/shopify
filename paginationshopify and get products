@@ -1,0 +1,45 @@
+{% section 'newsection' %}
+
+{{ page.url }}
+{% paginate collections.all.products by 2 %}
+  {% for product in collections.all.products %}
+    {{ product.id }}
+    <h1>{{ product.title }}</h1>
+    <h5>{{ product.description }}</h5>
+    <h5>{{ product.featured_image | img_url: 1000 | img_tag }}</h5>
+
+    <select name="variant" id="variantSelect{{ product.id }}">
+      {% for variant in product.variants %}
+        <option value="{{ variant.id }}">{{ variant.title }}</option>
+      {% endfor %}
+    </select>
+
+    <button onclick="checkVariant('{{ product.id }}')">Check Variant</button>
+  {% endfor %}
+
+  {% for part in paginate.parts %}
+    {% if part.is_link %}
+      {{ part.title | link_to: part.url }}
+    {% else %}
+      <span>{{ part.title }}</span>
+    {% endif %}
+  {% endfor %}
+{% endpaginate %}
+<h1>My variant id <span id="variant_id"></span></h1>
+<h1>My product id <span id="product_id"></span></h1>
+<script>
+  function checkVariant(productId) {
+    var variantSelect = document.getElementById('variantSelect' + productId);
+    var selectedVariantId = variantSelect.value;
+    
+
+    console.log('Product ID:', productId);
+    console.log('Selected Variant ID:', selectedVariantId);
+    
+  document.getElementById('variant_id').innerHTML="productId";
+document.getElementById('product_id').innerHTML="selectedVariantId";
+  }
+
+
+</script>
+
