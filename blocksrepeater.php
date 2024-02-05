@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
- {% for block in section.blocks %}  
+ {% for block in section.blocks  limit:4%}  
       <img src="{{ block.settings.bit_image | img_url: 'master' }}" />
         <div class="col-sm-4">
          
