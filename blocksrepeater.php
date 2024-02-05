@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-sm-4">
  {% for block in section.blocks %}  
+      <img src="{{ block.settings.bit_image | img_url: 'master' }}" />
         <div class="col-sm-4">
          
     {{ block.settings.galleryImage1 | img_url: '100x' | img_tag }}
