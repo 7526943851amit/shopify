@@ -1,0 +1,94 @@
+<section class="section bits-are-better">
+<div class="bits-are-better-container">
+  <h2 class="h2">{{ section.settings.bitsarebetter }}</h2>
+<div class="bits-are-better-row">
+<div class="bits-are-better-icon">
+ <ul>
+    {% for block in section.blocks %}
+        {% if forloop.index <= 3 %}
+      <li>
+        
+        <img src="{{ block.settings.bit_image | img_url: 'medium' }}" />
+        <h3>{{ block.settings.bit_text }}</h3>
+        <p>{{ block.settings.bit_description }}</p>
+      </li>
+   {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+<div class="bits-are-better-media">
+<figure>
+<img src="{{ section.settings.center_image | img_url: 'master' }}" />
+  
+</figure>
+</div>
+
+  <div class="bits-are-better-icon">
+ <ul>
+    {% for block in section.blocks %}
+       {% if forloop.index > 3 %}
+      <li>
+        <img src="{{ block.settings.bit_image | img_url: 'medium' }}" />
+        <h3>{{ block.settings.bit_text }}</h3>
+        <p>{{ block.settings.bit_description }}</p>
+      </li>
+     {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+</div>
+</div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Bits Are Better",
+  "settings": [
+    {
+      "type": "text",
+      "id": "bitsarebetter",
+      "label": "Enter Title"
+    },
+     {
+      "type": "image_picker",
+      "id": "center_image",
+      "label": "Select Image"
+    }
+    
+    
+  ],
+  "blocks": [
+    {
+      "type": "Bits",
+      "name": "Bits Are Better Blocks",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "bit_image",
+          "label": "Enter Image"
+        }  ,
+        {
+          "type": "text",
+          "id": "bit_text",
+          "label": "Enter title"
+        },
+        {
+          "type": "textarea",
+          "id": "bit_description",
+          "label": "Enter Descripiton"
+        }
+         
+      ]
+      
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bits Are Better"
+    }
+  ]
+}
+
+{% endschema %}
