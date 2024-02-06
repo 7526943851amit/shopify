@@ -1,0 +1,107 @@
+{% assign metafield_value1 = product.metafields.custom.description_title %}
+{% assign metafield_value2 = product.metafields.custom.description_description %}
+{% assign metafield_value3 = product.metafields.custom.direction_for_use_title %}
+{% assign metafield_value4 = product.metafields.custom.direction_for_use_description %}
+{% assign metafield_value5 = product.metafields.custom.ingreients_title %}
+{% assign metafield_value6 = product.metafields.custom.ingreients_content %}
+{% assign metafield_value7 = product.metafields.custom.why_subscribe_title %}
+{% assign metafield_value8 = product.metafields.custom.why_subscribe_description %}
+
+<div class=" pdp_accodination">
+ 
+<div class="accordion">
+  {% if metafield_value1 != blank and metafield_value2 != blank %}
+  <div class="accordion-item" data-target="description">
+    <div class="accordion-title">
+      <h3>{{ metafield_value1 }}</h3>
+      <svg class="accordion-icon" role="img" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height: 16px;">
+        <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+      </svg>
+    </div>
+    <div class="accordion-content">{{ metafield_value2 }}</div>
+  </div>
+{% endif %}
+{% if metafield_value3 != blank and metafield_value4 != blank %}
+  <div class="accordion-item" data-target="direction_for_use">
+     <div class="accordion-title">
+    <h3>{{ metafield_value3 }}</h3>
+    <svg class="accordion-icon" role="img" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height: 16px;">
+      <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+    </svg>
+     </div>
+    <div class="accordion-content">{{ metafield_value4 }}</div>
+  </div>
+  {% endif %}
+  {% if metafield_value5 != blank and metafield_value6 != blank %}
+  <div class="accordion-item" data-target="ingredients">
+     <div class="accordion-title">
+    <h3>{{ metafield_value5 }}</h3>
+    <svg class="accordion-icon" role="img" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height: 16px;">
+      <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+    </svg>
+     </div>
+    <div class="accordion-content">{{ metafield_value6 }}</div>
+  </div>
+  {% endif %}
+      {% if metafield_value7 != blank and metafield_value8 != blank %}
+  <div class="accordion-item" data-target="why_subscribe">
+     <div class="accordion-title">
+    <h3>{{ metafield_value7 }}</h3>
+    <svg class="accordion-icon" role="img" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="height: 16px;">
+      <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path>
+    </svg>
+     </div>
+    <div class="accordion-content">{{ metafield_value8 }}</div>
+  </div>
+  {% endif %}
+</div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const accordionItems = document.querySelectorAll(".accordion-item");
+
+    accordionItems.forEach(function(item) {
+      item.addEventListener("click", function() {
+        const target = this.getAttribute("data-target");
+        const content = this.querySelector(".accordion-content");
+        const icon = this.querySelector(".accordion-icon");
+
+        accordionItems.forEach(function(otherItem) {
+          if (otherItem !== item) {
+            otherItem.classList.remove("active");
+            otherItem.querySelector(".accordion-content").style.display = "none";
+            otherItem.querySelector(".accordion-icon").classList.remove("rotate");
+          }
+        });
+
+        if (!item.classList.contains("active")) {
+          item.classList.add("active");
+          content.style.display = "block";
+          icon.classList.add("rotate");
+        } else {
+          item.classList.remove("active");
+          content.style.display = "none";
+          icon.classList.remove("rotate");
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .accordion-content {
+    display: none;
+  }
+
+  .accordion-item.active .accordion-content {
+    display: block;
+  }
+
+  .accordion-icon {
+    transition: transform 0.3s ease;
+  }
+
+  .rotate {
+    transform: rotate(180deg);
+  }
+</style>
