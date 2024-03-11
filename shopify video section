@@ -1,0 +1,158 @@
+<script>
+  $(document).ready(function(){
+  $('.custom_slider').slick({
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  responsive: [
+    {
+      breakpoint: 1250,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 767,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: true
+      }
+    }
+  ]
+});
+});	
+ </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="tiktoksection">
+  <div class="container">
+    
+        <h2>{{ section.settings.tiktokheading }}</h2>
+    
+        <div class="custom_slider">
+        {% for block in section.blocks %}
+          {% if block.settings.video_url != blank %}
+            <div class="my_video_background_banner">
+              <div class="video-container">
+                <video class="my_video" muted>
+                  <source src="{{ block.settings.video_url }}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <div class="play_pause_icon">
+                    <svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 80.6666V7.33331L77 44L11 80.6666Z" fill="white" fill-opacity="0.55"></path>
+                    </svg>
+                </div>
+                <!-- <img class="play_pause_icon" src="https://cdn.shopify.com/s/files/1/0583/2661/4153/files/play_1.png?v=1709883680" /> -->
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        </div>
+    
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var videos = document.querySelectorAll('.my_video');
+  var icons = document.querySelectorAll('.play_pause_icon');
+
+  icons.forEach(function(icon, index) {
+    icon.addEventListener('click', function() {
+      var video = videos[index];
+      if (video.paused) {
+        video.play();
+        icon.style.display = 'none'; 
+      } else {
+        video.pause();
+        icon.style.display = 'block'; 
+      }
+    });
+
+    videos[index].addEventListener('click', function() {
+      var video = videos[index];
+      if (video.paused) {
+        video.play();
+        icon.style.display = 'none'; 
+      } else {
+        video.pause();
+        icon.style.display = 'block'; 
+      }
+    });
+
+    // Show play icon when video ends
+    videos[index].addEventListener('ended', function() {
+      icons[index].style.display = 'block';
+    });
+  });
+});
+
+
+
+  
+</script>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Tiktok Video Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tiktokheading",
+      "label": "Enter Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video Block",
+      "settings": [
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TikTok Video Section",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
