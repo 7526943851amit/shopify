@@ -1,3 +1,14 @@
+
+
+{% if product.metafields.custom.productpagepromo != blank %}
+            <div class="productPagePromoText">
+              {{ product.metafields.custom.productpagepromo }}
+            </div>
+            {% endif %}
+
+
+
+
   {% if template == "page.shop" or page.handle contains 'affiliate-program'
 or template == 'collection.deals' or template == "product" or template == "customers/login" or template == "list-collections" or template == "collection" or template == "page.contact-us" or template == "page.bonus-catalog" or template == "cart" or template == "search" %}
 {% if product.title == 'amit' %}
