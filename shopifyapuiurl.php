@@ -5,3 +5,5 @@ c3060c971def7799e29cb7e43c6ec174 shopify api key ha je fir pswrd hai gfir url se
 
 https://anytimetoolandauto.com/admin/api/2023-10/products.json
 <!-- https://anytimetoolandauto.com/admin/api/2023-10/products.json -->
+
+headers mei daalte hain X-Shopify-Access-Token token aur je
