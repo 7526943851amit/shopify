@@ -1,0 +1,33 @@
+Gorav sir collection prdocts
+
+{% assign collection_handle = section.settings.mycollection %}
+{% for product in collections[collection_handle].products %}
+  <div>
+    <h1>{{ product.title }}</h1>
+    <h5>{{ product.description }}</h5>
+    <h5><img src="{{ product.featured_image.src | img_url: 'medium' }}" alt="{{ product.title }}" width="200"></h5>
+    <h4>Price: {{ product.variants.first.price | money }}</h4>
+    <form action="/cart/add" method="post">
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+      <input type="submit" value="Add to Cart">
+    </form>
+  </div>
+{% endfor %}
+{% schema %}
+{
+  "name": "All collection",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "mycollection",
+      "label": "Select collection"
+    }
+  ],
+   "presets": [
+      {
+        "name": "Custom collection",
+        "category": "Custom"
+      }
+    ]
+}
+{% endschema %}
