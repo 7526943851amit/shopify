@@ -43,3 +43,5 @@
 {{ image.src | product_img_url: 'grande' | img_tag}}
      {% endfor %}
   {{ product.price |money_without_trailing_zeros  }}
+        "type": "checkbox",
+        "id": "show_cart_note",
