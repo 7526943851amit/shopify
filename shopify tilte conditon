@@ -1,0 +1,21 @@
+{% if product.title contains 'Afvallen (Copy)' %}
+  <div class="firmhouse_open_content">
+    {% for option in variantName4 %}
+      <div class="firmhouse_open_content_col" onClick="changeColor('{{ option }}', 4)">
+        <span class="firmhouse_color" style="background: {% render 'swatch' with option as swatch %}"></span>
+        <span class="firmhouse_name">{{ option }}</span>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% if product.contains contains 'Afvallen (Copy)' %}
+  <div class="firmhouse_open_content">
+    {% for option in variantName4 %}
+      <div class="firmhouse_open_content_col" onClick="changeColor('{{ option }}', 4)">
+        <span class="firmhouse_color" style="background: {% render 'swatch' with option as swatch %}"></span>
+        <span class="firmhouse_name">{{ option }}</span>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
