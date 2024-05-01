@@ -1,0 +1,94 @@
+/* amit code */
+var defaultQuantity = null;
+
+$(document).on('click', '.plus', function() {
+    var input = $(this).closest('.flex').find('input[name="quantity"]');
+    var currentVal = parseInt(input.val());
+    var variantID = $(this).closest('.product-item-atc').find('.product-item-atc_btn').data('variant_id');
+
+    input.val(currentVal + 1);
+    cartFunctions('/cart/change.js', variantID, currentVal + 1);
+
+    var itemID = $(this).closest('.added-item').data('item-id');
+    updateItemQuantityInCart(itemID, currentVal + 1);
+});
+
+$(document).on('click', '.minus', function() {
+    var input = $(this).closest('.flex').find('input[name="quantity"]');
+    var currentVal = parseInt(input.val());
+    var variantID = $(this).closest('.product-item-atc').find('.product-item-atc_btn').data('variant_id');
+
+    if (currentVal > 1) {
+        input.val(currentVal - 1);
+        cartFunctions('/cart/change.js', variantID, currentVal - 1);
+    } else if (currentVal === 1) { 
+        input.val(currentVal - 1);
+        cartFunctions('/cart/change.js', variantID, currentVal - 1);
+    }
+
+    var itemID = $(this).closest('.added-item').data('item-id');
+    updateItemQuantityInCart(itemID, currentVal - 1);
+});
+
+$(document).on('click', '.product-item-atc_btn', function() {
+    defaultQuantity = $(this).data('item-quantity'); 
+    var input = $(this).closest('.product-item-atc').find('input[name="quantity"]');
+    input.val(defaultQuantity); 
+
+    var variantID = $(this).data('variant_id');
+    var currentVal = parseInt(input.val());
+    cartFunctions('/cart/change.js', variantID, currentVal);
+});
+
+function updateItemQuantityInCart(itemID, newQuantity) {
+    $.ajax({
+        method: 'POST',
+        url: '/cart/change.js',
+        data: {
+            id: itemID,
+            quantity: newQuantity
+        },
+        dataType: 'json',
+        success: function(resp) {
+            // Cart drawer ke contents ko update karein
+            var cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
+            cart.renderContents(resp);
+
+            if (newQuantity <= 0) {
+                newQuantity = 0;
+            }
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+}
+
+function cartFunctions(cart_url, variantId, qty) {
+    var cart = document.querySelector('cart-notification') || document.querySelector('cart-drawer');
+    $.ajax({
+        method: 'POST',
+        url: cart_url,
+        data: {
+            id: variantId,
+            quantity: qty,
+            sections: 'cart-drawer,cart-icon-bubble',
+            sections_url: window.location.pathname
+        },
+        dataType: 'json',
+        success: function (resp) {
+            cart.renderContents(resp);
+            $('.drawer').removeClass('is-empty');
+            var active_url = $("#product-list").attr('active_url');
+            updateProductLists(active_url);
+        },
+        error: function (error) {
+            var active_url = $("#product-list").attr('active_url');
+            updateProductLists(active_url);
+            console.log(error);
+        }
+    });
+}
+
+
+/* amit code end */
