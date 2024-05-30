@@ -1,3 +1,4 @@
+ezfy extension in chorme
 <link
         rel="stylesheet"
         href="{{ 'amit.css' | asset_url }}"
