@@ -1,0 +1,253 @@
+{% comment %}ly_global_begin{% endcomment %}
+{%- include 'ly-global' -%}
+{% comment %}ly_global_end{% endcomment %}
+<div class="wrapper">
+  {% include 'breadcrumb' %}
+</div>
+
+<div class="grid1 wrapper {{page.handle}} page-page">
+  <h1 class="dot_line_title">
+    <span class="box-title">
+      {% comment %}ly_code_replace_for_[ page.title ]_begin{% include 'ly-title' with page %}{{ ly_translation }}{% endcomment %}
+      The Battle of Bosworth Mosaic Reproduction{% comment %}ly_code_replace_end{% endcomment %}
+    </span>
+  </h1>
+
+  <div class="rte custom--battle-content">
+    {% comment %}ly_code_replace_for_[ page.content ]_begin{% endcomment %}
+    {%- include 'ly-content' with page -%}
+    {{- ly_translation -}}
+    {% comment %}ly_code_replace_end{% endcomment %}
+    {% if page.handle == 'testimonial' %}
+      <div style="width: 100%;">
+        <div id="kudobuzz_slider_widget"></div>
+        <div id="kudobuzz_fullpage_widget"></div>
+      </div>
+    {% endif %}
+    {% if page.handle == 'submit-an-idea' %}
+      <ly-as-7460992>[powr-comments id=46df0d00_1496444278]</ly-as-7460992>
+    {% endif %}
+  </div>
+  <section class="big-mosaic-section-blocks" id="{{ section.id }}">
+    <div class="large--three-quarters larger--three-quarters push--large--one-eighth">
+      {% if section.blocks.size > 0 %}
+        <div class="big-mosaic-blocks">
+          {% for block in section.blocks %}
+            {% if block.type == 'gallery-block' %}
+              <div class="gallery-blocks">
+                {% for i in (1..3) %}
+                  {% assign Image = 'image_' | append: i %}
+                  {% if block.settings[Image] != blank %}
+                    <div class="gallery-image-item">
+                      <img
+                        src="{{ block.settings[Image] | img_url: 'original' }}"
+                        alt="{{ block.settings[Image].alt }}"
+                      >
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% elsif block.type == 'content-block' %}
+              {% if block.settings.content != blank %}
+                <div class="content-block">
+                  <div class="rte">{{ block.settings.content }}</div>
+                </div>
+              {% endif %}
+            {% elsif block.type == 'banner-block' %}
+              {% if block.settings.image != blank %}
+                <div class="banner-block">
+                  <img src="{{ block.settings.image | img_url: 'original' }}" alt="{{ block.settings.image.alt }}">
+                </div>
+              {% endif %}
+            {% elsif block.type == 'video-block' %}
+              <div class="video-block">
+                <div class="video-wrapper">
+                  {%- if block.settings.video_url == blank -%}
+                    <iframe
+                      src="//www.youtube.com/embed/_9VUPq3SxOc?rel=0&showinfo=0&vq=720"
+                      width="850"
+                      height="480"
+                      frameborder="0"
+                      allowfullscreen
+                    ></iframe>
+                  {%- else -%}
+                    {%- if block.settings.video_url.type == 'youtube' -%}
+                      <iframe
+                        src="//www.youtube.com/embed/{{ block.settings.video_url.id }}?rel=0&showinfo=0&vq=720"
+                        width="850"
+                        height="480"
+                        frameborder="0"
+                        allowfullscreen
+                      ></iframe>
+                    {%- endif -%}
+                    {%- if block.settings.video_url.type == 'vimeo' -%}
+                      <iframe
+                        src="//player.vimeo.com/video/{{ block.settings.video_url.id }}"
+                        width="850"
+                        height="480"
+                        frameborder="0"
+                        allowfullscreen
+                      ></iframe>
+                    {%- endif -%}
+                  {%- endif -%}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </section>
+</div>
+<style>
+  .custom--battle-content {
+    font-size: 18px;
+  }
+
+  .big-mosaic-blocks {
+    margin: 30px 0 60px;
+  }
+
+  .gallery-blocks {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: center;
+    -ms-flex-pack: space-between;
+    justify-content: space-between;
+  }
+
+  .gallery-image-item {
+    width: 33.33%;
+    padding: 5px;
+  }
+
+  .gallery-image-item img {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    padding: 5px;
+  }
+
+  .content-block {
+    margin: 20px 0;
+  }
+
+  .content-block .rte p {
+    font-size: 18px;
+  }
+
+  .video-block {
+    margin-bottom: 20px;
+  }
+
+  @media only screen and (max-width: 575px) {
+    .gallery-image-item {
+      width: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 425px) {
+    .gallery-image-item {
+      margin-bottom: 10px;
+      width: 100%;
+      padding: 0;
+    }
+  }
+</style>
+<script type="text/javascript">
+  {% if page.handle == 'about-us' %}
+    $('.about-us h5').next('p').on('click', function() {
+      $(this).find('em').toggle(200);
+      $(this).toggleClass('close');
+    });
+  {% endif %}
+
+  {% if page.handle == 'frequently-asked-questions' %}
+    $('.frequently-asked-questions h4').on('click', function() {
+      $(this).next('p, div').toggle(200);
+      $(this).toggleClass('open');
+    });
+  {% endif %}
+</script>
+{% schema %}
+{
+  "name": "Big Mosaic Blocks",
+  "settings": [],
+  "blocks":[
+		{
+			"type":"gallery-block",
+			"name":"Gallery",
+			"settings":[
+				{
+					"type":"image_picker",
+					"id":"image_1",
+					"label":"Image 1"
+				},
+				{
+					"type":"image_picker",
+					"id":"image_2",
+					"label":"Image 2"
+				},
+				{
+					"type":"image_picker",
+					"id":"image_3",
+					"label":"Image 3"
+				}
+			]
+		},
+		{
+			"type":"content-block",
+			"name":"Content",
+			"settings":[
+				{
+					"type":"richtext",
+					"id":"content",
+					"label":"Content"
+				}
+			]
+		},
+		{
+			"type":"banner-block",
+			"name":"Banner",
+			"settings":[
+				{
+					"type":"image_picker",
+					"id":"image",
+					"label":"Image"
+				}
+			]
+		},
+		{
+			"type":"video-block",
+			"name":"Video",
+			"settings":[
+              {
+                  "type": "video_url",
+                  "id": "video_url",
+                  "label": "Video link",
+                  "accept": ["youtube", "vimeo"]
+              }
+			]
+		}
+	],
+   "presets": [
+    {
+      "name": "Big Mosaic Block",
+      "category": "Block"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
