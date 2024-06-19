@@ -63,6 +63,36 @@
 
 Setting schema 
 
-
+{
+    "name": "PopUp Settings",
+    "settings": [
+      {
+        "type": "checkbox",
+        "label": "Enable Modal",
+        "id": "enable_modal",
+        "default": false
+      },
+      {
+        "type": "html",
+        "label": "Modal Heading",
+        "id": "modal_heading"
+      },
+      {
+        "type": "image_picker",
+        "label": "Modal Image",
+        "id": "modal_image"
+      },
+      {
+        "type": "text",
+        "label": "text",
+        "id": "button_text"
+      },
+      {
+        "type": "text",
+        "label": "Button text",
+        "id": "button_modal"
+      }
+    ]
+  }
 
 
