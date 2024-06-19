@@ -1,0 +1,68 @@
+{% assign enableModal = settings.enable_modal %}
+{% if enableModal %}
+  <div id="myModal" class="modal saleModalWrap">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="sale_modal_content">
+        <h2>{{ settings.modal_heading }}</h2>
+        <figure><img src="{{ settings.modal_image | img_url:'master' }}" height="" width=""></figure>
+        <p>{{ settings.button_text }}</p>
+        <button class="modal-button">{{ settings.button_modal }}</button>
+      </div>
+    </div>
+  </div>
+  <script>
+      // Function to display modal
+    function openModal() {
+        var modal = document.getElementById('myModal');
+        var closeButton = modal.querySelector('.close');
+        var okButton = modal.querySelector('.modal-button');
+        // Check if the modal should be displayed (based on a cookie)
+        var modalShown = getCookie('modalShown');
+        if (!modalShown) {
+            modal.style.display = 'block';
+            // Close the modal when the close button is clicked
+            closeButton.onclick = function() {
+                modal.style.display = 'none';
+                // Set a cookie to indicate that the modal has been shown
+                document.cookie = 'modalShown=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/';
+            }
+            // Close the modal when the "Ok" button is clicked
+            okButton.onclick = function() {
+                modal.style.display = 'none';
+                // Set a cookie to indicate that the modal has been shown
+                document.cookie = 'modalShown=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/';
+            }
+            // Close the modal when the user clicks outside of it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                    // Set a cookie to indicate that the modal has been shown
+                    document.cookie = 'modalShown=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/';
+                }
+            }
+        }
+    }
+    // Function to get a cookie value
+    function getCookie(name) {
+        var cookieArr = document.cookie.split(';');
+        for (var i = 0; i < cookieArr.length; i++) {
+            var cookiePair = cookieArr[i].split('=');
+            if (name == cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+    // Call openModal function when the page loads
+    window.onload = openModal;
+  </script>
+{% endif %}
+
+
+
+Setting schema 
+
+
+
+
