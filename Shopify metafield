@@ -3,3 +3,23 @@
               {{ product.metafields.custom.productpagepromo }}
             </div>
             {% endif %}
+ <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const sizeRadios = document.querySelectorAll('input[name="size"]');
+
+        const metafieldXs = document.getElementById('metafield-xs');
+        const metafieldS = document.getElementById('metafield-s');
+
+        sizeRadios.forEach(radio => {
+          radio.addEventListener('click', function() {
+            if (radio.value === 'xs') {
+              metafieldXs.style.display = 'block';
+              metafieldS.style.display = 'none';
+            } else if (radio.value === 's') {
+              metafieldXs.style.display = 'none';
+              metafieldS.style.display = 'block';
+            }
+          });
+        });
+      });
+    </script>
