@@ -3,6 +3,13 @@
               {{ product.metafields.custom.productpagepromo }}
             </div>
             {% endif %}
+
+
+{% if product.metafields.custom.sold_out_button == true %}
+  <a class="custom_link" href="{{ card_product.url }}">Uitverkocht</a>
+{% else %}
+  <a class="custom_link" href="{{ card_product.url }}">Nu bestellen</a>
+{% endif %}
  <script>
         document.addEventListener('DOMContentLoaded', function() {
         const sizeRadios = document.querySelectorAll('input[name="size"]');
