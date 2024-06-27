@@ -1,0 +1,21 @@
+{% assign json_data = page.metafields.custom.get_inspired_bathroom.value %}
+        {% for customImageSwatch in json_data %}
+          <div class="image_inspired">
+            <a
+              href="{{ customImageSwatch.image }}"
+              data-fancybox="gallery"
+              {% if customImageSwatch.link != blank %}
+                data-caption="<a href='{{ customImageSwatch.link }}' target='_blank'>View product</a>"
+              {% endif %}
+            >
+              <img loading="lazy" src="{{ customImageSwatch.image  }}" alt="">
+            </a>
+          </div>
+        {% endfor %}
+
+
+        {
+  "image": "https://www.mozaico.com/cdn/shop/files/IMG_3352.jpg",
+              "title": "",
+              "link": ""
+}
