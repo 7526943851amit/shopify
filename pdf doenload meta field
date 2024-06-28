@@ -1,0 +1,29 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var downloadLink = document.querySelector('.download-pdf-link');
+    if (downloadLink) {
+        downloadLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            var pdfURL = '{{ product.metafields.custom.specifications_sheet_pdf_url }}';  // Replace with your PDF URL
+            var fileName = 'specification-sheet.pdf';  // Replace with your desired file name
+            download_file(pdfURL, fileName);
+        });
+    }
+});
+function download_file(fileURL, fileName) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', fileURL, true);
+    xhr.responseType = 'blob';
+    xhr.onload = function() {
+        var blob = xhr.response;
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+    };
+    xhr.send();
+}
+</script>
+New
+9:56
+<a href="#" class="download-pdf-link"> <span class="download-arrow"></span></a>
