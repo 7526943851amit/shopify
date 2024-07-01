@@ -1,0 +1,3 @@
+{% if product.variants.first.inventory_management == "shopify" and product.variants.first.inventory_quantity > 0 %}
+{{ product.variants.first.inventory_quantity }} in stock.
+{% endif %}
