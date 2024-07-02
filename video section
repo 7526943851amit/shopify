@@ -1,0 +1,46 @@
+<style></style>
+
+<div class="container-fluid">
+  <div class="videoSec">
+    {%- if section.settings.video_url != blank -%}
+      <video id="autoplay-video" autoplay muted loop>
+        <source src="{{ section.settings.video_url }}" type="video/mp4">
+      </video>
+    {% endif %}
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var video = document.getElementById('autoplay-video');
+    video.controls = false;
+    video.muted = false;
+
+    video.addEventListener('click', function() {
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Video Franchising",
+  "settings": [
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Enter Video URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Franchising ",
+      "category": "Video Franchising"
+    }
+  ]
+}
+{% endschema %}
