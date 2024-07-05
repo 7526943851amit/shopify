@@ -1,0 +1,169 @@
+<div
+  id="section-id-{{ section.id }}"
+  class="section border-top section-background-video {% if section.settings.full_width %}full-width-section{% endif %}"
+  data-section-type="background-video"
+>
+  {% style %}
+        .play_pause_icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50% , -50%);
+        z-index: 9;
+        width: 60px;
+        height: 60px;
+        background: rgb(0, 97, 209);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .play_pause_icon svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .play_pause_icon svg path {
+        fill: #fff;
+        opacity: 1;
+    }
+            div#video-container {
+            /* padding-bottom: 54.5%; */
+            position: relative;
+           overflow:hidden;
+        }
+
+        div#video-container video {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: unset;
+        }
+
+            div#video-container{
+              height: {{ section.settings.height_mobile }}px;
+            }
+             @media (min-width: 768px) {
+              div#video-container {
+                height: {{ section.settings.height_desktop }}px;
+              }
+  {% endstyle %}
+
+  {% unless section.settings.full_width %}<div class="container">{% endunless %}
+  <div id="video-container" class="videoSec">
+    {%- if section.settings.video_url != blank -%}
+      <!--
+        <video id="autoplay-video" autoplay playsinline controls>
+          <source src="{{ section.settings.video_url }}" type="video/mp4">
+        </video>
+      -->
+      <!-- <button onclick="enableAutoplay()" type="button" id="autoplayBtn">Enable autoplay</button> -->
+
+      <video id="autoplay-video" width="320" height="176" playsinline loop class="my_video">
+        <source src="{{ section.settings.video_url }}" type="video/mp4">
+      </video>
+      <div class="play_pause_icon">
+        <svg
+          height="512px"
+          id="Layer_1"
+          style="enable-background:new 0 0 512 512;"
+          version="1.1"
+          viewBox="0 0 512 512"
+          width="512px"
+          xml:space="preserve"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <path d="M405.2,232.9L126.8,67.2c-3.4-2-6.9-3.2-10.9-3.2c-10.9,0-19.8,9-19.8,20H96v344h0.1c0,11,8.9,20,19.8,20  c4.1,0,7.5-1.4,11.2-3.4l278.1-165.5c6.6-5.5,10.8-13.8,10.8-23.1C416,246.7,411.8,238.5,405.2,232.9z"/>
+        </svg>
+      </div>
+    {% endif %}
+  </div>
+
+  {% unless section.settings.full_width %}</div>{% endunless %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var video = document.querySelector('.my_video');
+    var icon = document.querySelector('.play_pause_icon');
+    // icon.style.display = 'none';
+    video.addEventListener('click', function() {
+      if (video.paused) {
+        video.play();
+        icon.style.display = 'none';
+      } else {
+        video.pause();
+        icon.style.display = 'flex';
+      }
+    });
+
+
+    icon.addEventListener('click', function() {
+      if (video.paused) {
+        video.play();
+        icon.style.display = 'none';
+      } else {
+        video.pause();
+        icon.style.display = 'flex';
+      }
+    });
+
+    // Show play icon when video ends
+    video.addEventListener('ended', function() {
+      icon.style.display = 'flex';
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Video Franchising",
+  "settings": [
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Enter Video URL"
+    },
+    {
+        "type": "header",
+        "content": "Layout"
+      },
+    {
+        "id": "full_width",
+        "type": "checkbox",
+        "label": "Full width",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "height_desktop",
+        "min": 200,
+        "max": 1000,
+        "step": 20,
+        "unit": "px",
+        "label": "Desktop fixed height",
+        "default": 600
+      },
+      {
+        "type": "range",
+        "id": "height_mobile",
+        "min": 100,
+        "max": 1000,
+        "step": 20,
+        "unit": "px",
+        "label": "Mobile fixed height",
+        "default": 500
+      }
+  ],
+  "presets": [
+    {
+      "name": "Video Franchising ",
+      "category": "Video Franchising"
+    }
+  ]
+}
+{% endschema %}
