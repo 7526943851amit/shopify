@@ -1,0 +1,8 @@
+document.querySelector(".product-form__submit").addEventListener("click", function() {
+    var buttonText = document.querySelector(".button-text");
+    buttonText.innerText = "Added";
+    
+    setTimeout(function() {
+      buttonText.innerText = "Add to cart";
+    }, 2000);
+  });
