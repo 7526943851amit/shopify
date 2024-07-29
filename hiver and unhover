@@ -1,0 +1,34 @@
+const detailsElement = document.querySelector('#Details-HeaderMenu-1');
+const summaryElement = document.querySelector('#HeaderMenu-shop');
+const sectionHeader = document.querySelector('.section-header');
+
+detailsElement.addEventListener('mouseenter', () => {
+  detailsElement.setAttribute('open', '');
+  summaryElement.setAttribute('aria-expanded', 'true');
+    sectionHeader.classList.add('new_hovermegamenus');
+
+
+});
+detailsElement.addEventListener('mouseleave', () => {
+  detailsElement.removeAttribute('open');
+  summaryElement.setAttribute('aria-expanded', 'false');
+sectionHeader.classList.remove('new_hovermegamenus');
+
+
+});
+
+const detailsLearn = document.querySelector('#Details-HeaderMenu-2');
+const summaryLearn = document.querySelector('#HeaderMenu-learn');
+const sectionHeader2 = document.querySelector('.section-header');
+
+detailsLearn.addEventListener('mouseenter', () => {
+  detailsLearn.setAttribute('open', '');
+  summaryLearn.setAttribute('aria-expanded', 'true');
+  sectionHeader2.classList.add('new_hovermegamenus');
+});
+
+detailsLearn.addEventListener('mouseleave', () => {
+  detailsLearn.removeAttribute('open');
+  summaryLearn.setAttribute('aria-expanded', 'false');
+  sectionHeader2.classList.remove('new_hovermegamenus');
+});
