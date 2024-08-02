@@ -1,0 +1,7 @@
+ document.addEventListener("DOMContentLoaded", function() {
+ var currentUrl = window.location.href;
+ if (currentUrl.includes("https://www.submergeicebath.com/collections/all") || 
+        currentUrl.includes("https://www.submergeicebath.com/products/submerge-tub-chiller-bundle")) {
+        window.location.href = "https://www.submergeicebath.com";
+    }
+});
