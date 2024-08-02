@@ -1,0 +1,27 @@
+/* POPUP code add address JS  start*/
+     $(document).ready(function() {
+
+
+
+
+        $('.address-add-new').click(function() {
+          $('body').addClass('overflow-hidden');
+            $('#popup_new').show();
+        });
+
+        // When the cancel button inside the popup is clicked
+        $('.address-cancel').click(function() {
+           $('body').removeClass('overflow-hidden');
+            $('#popup_new').hide();
+        });
+
+
+        $(document).mouseup(function(e) {
+            var popup = $('.popup-content');
+            if (!popup.is(e.target) && popup.has(e.target).length === 0) {
+
+                $('#popup_new').hide();
+               $('body').removeClass('overflow-hidden');
+            }
+        });
+    });
