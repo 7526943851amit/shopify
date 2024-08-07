@@ -1,0 +1,13 @@
+{% assign truncated_name = customer.first_name %}
+
+{% if customer.first_name.size > 10 %}
+    {% assign truncated_name = customer.first_name | slice: 0, 10 %}
+    {% assign truncated_name = truncated_name | append: '...' %}
+{% else %}
+    {% if customer.first_name.size <= 7 %}
+        {% assign last_initial = customer.last_name | slice: 0, 1 %}
+        {% assign truncated_name = truncated_name | append: ' ' | append: last_initial | append: '.' %}
+    {% endif %}
+{% endif %}
+
+<span>{{ truncated_name }}</span>
