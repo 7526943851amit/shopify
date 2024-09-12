@@ -1,0 +1,69 @@
+
+
+
+
+mujhe je data nahi mil raha 
+
+Name:
+Description:
+SKU:
+Category:
+Manufacturer:
+Configurations:
+UPC:
+Release Date:
+Order Due Date:
+Order Due:
+ 
+
+
+maine je api chalake sara data get kiya hai
+<?php
+// URL of the page to fetch
+$ch = curl_init();
+
+
+curl_setopt($ch, CURLOPT_URL, 'https://www.gtsdistribution.com/pc_product_detail.asp?key=FC50A74DDBA54FB58619113509660897');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+$html = curl_exec($ch);
+
+curl_close($ch);
+echo htmlspecialchars($html);
+?>
+
+html mein toh je hai jahaan aa raha data yr 
+{"key":"FC50A74DDBA54FB58619113509660897","sku":"FSD1022","showTabs":false,"type":"","childStartingPrice":null,"childDisplayType":"","description": 
+
+
+
+
+je hai "sku":"FSD1022" 
+fir {"searchfield1":{"show":true,"label":"Category:","value":"Board Games"},"searchfield2":{"show":true,"label":"Manufacturer:","value":"FIRESIDE GAMES"},"searchfield5":
+
+"Category:","value":"Board Games"
+fir jahaan hai category
+
+
+{"searchfield1":{"show":true,"label":"Category:","value":"Board Games"},"searchfield2":{"show":true,"label":"Manufacturer:","value":"FIRESIDE GAMES"},"searchfield5":
+
+
+fir jahaan hai "Manufacturer:","value":"FIRESIDE GAMES"
+
+
+{"show":false,"label":"Brand:","value":""},"searchfield7":{"show":true,"label":"Configurations:","value":"6 / case"},"searchfield16":{"show":false,"label":" ","value":""},"searchfield22":
+
+fir jahaan hai "Configurations:","value":"6 / case"} 
+
+[],"total_count":"1","show_inv_watch":true,"useCartOptions":false,"createSoftGoodsAuth":false,"f_id":"","questions":[],"pageName1":"","seoPage":"Board-Games/ZOOMIES.asp","configuratorEditData":null,"opt1":"","opt1_sort":0,"opt2":"","opt2_sort":0,"opt3":"","opt3_sort":0,"opt4":"","opt4_sort":0,"opt5":"UPC: 850680002517","opt5_sort":0,"opt6":"9/12/2024 6:35:28 AM","opt6_sort":0,"opt7":"","opt8":"","opt10":"No","opt12":"","opt13":"Yes","opt14":"PSI","opt15":"","opt16":"Y","release_date":"2024-09-
+
+fir jahaan hai upc UPC: 850680002517
+
+"release_date_display":"09/18/2024","
+jahaan hai releasee date
+"preorder_date_display":"08/27/2024" 
+jahaan hai Order Due Date:
+
+
+Order Due:
+ jahaan hai Order Due
