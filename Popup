@@ -1,0 +1,51 @@
+{% assign enableModal = settings.enable_modal %}
+{% if enableModal %}
+  <div id="myModal" class="modal saleModalWrap">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="sale_modal_content">
+        <h2>{{ settings.modal_heading }}</h2>
+        <figure><img src="{{ settings.modal_image | img_url:'master' }}" height="" width=""></figure>
+        <p>{{ settings.button_text }}</p>
+        <button class="modal-button">{{ settings.button_modal }}</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+ document.addEventListener('DOMContentLoaded', function () {
+    var modal = document.getElementById('myModal');
+    var closeButton = modal.querySelector('.close');
+    var okButton = modal.querySelector('.modal-button');
+    
+    // Function to close the modal and mark it as shown in sessionStorage
+    function closeModal() {
+        modal.style.display = 'none';
+        sessionStorage.setItem('modalShown', 'true'); // Store in sessionStorage to prevent showing again in this session
+    }
+
+    // Function to show the modal if it hasn't been shown already
+    function showModal() {
+        // Check if the modal has been shown before (from sessionStorage)
+        if (!sessionStorage.getItem('modalShown')) {
+            modal.style.display = 'block';
+        }
+    }
+
+    // Close the modal when the close button or OK button is clicked
+    closeButton.addEventListener('click', closeModal);
+    okButton.addEventListener('click', closeModal);
+
+    // Close the modal if the user clicks outside of it (on the modal background)
+    window.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Show the modal when the page is loaded if it hasn't been shown
+    showModal();
+});
+
+  </script>
+{% endif %}
