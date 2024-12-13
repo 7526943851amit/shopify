@@ -1,0 +1,29 @@
+<button id="downloadButton">Download Event Calendar</button>
+
+<script>
+  document.getElementById('downloadButton').addEventListener('click', function() {
+    var fileUrl = 'https://cdn.shopify.com/s/files/1/1098/5414/files/GKSacramento_Nov2024.jpg?v=1730773375';
+    var fileName = 'GKSacramento_Nov2024.jpg'; // Name of the file when downloaded
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", fileUrl, true);
+    xhr.responseType = "blob"; 
+
+    xhr.onload = function() {
+     
+      var blob = xhr.response; 
+      var link = document.createElement('a'); 
+      link.href = URL.createObjectURL(blob); 
+      link.download = fileName; 
+      document.body.appendChild(link); 
+      link.click(); 
+      document.body.removeChild(link); 
+    };
+
+    xhr.onerror = function() {
+      console.log("Error downloading the file.");
+    };
+
+    xhr.send(); // Send the request to download the file
+  });
+</script>
